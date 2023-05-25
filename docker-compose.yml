@@ -1,0 +1,19 @@
+version: "3"
+services:
+   application:
+     image: sb-db-app
+     ports: 
+       - "8080:8080"
+     networks:
+       - sb-db-net
+     depends_on:
+       - mysqldb
+   mysqldb:
+    image: mysql: latest
+    networks:
+      - sb-db-net
+    environment:
+      - MYSQL_DATABASE_PASSWORD=system
+      - MYSQL_DATABASE=mydb
+networks:
+  sb-db-net:
